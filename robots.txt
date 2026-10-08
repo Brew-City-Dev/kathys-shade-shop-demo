@@ -1,0 +1,4 @@
+# Design concept, not the live Kathy's Shade Shop site.
+# Kept out of search results on purpose.
+User-agent: *
+Disallow: /
