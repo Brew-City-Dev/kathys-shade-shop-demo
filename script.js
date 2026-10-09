@@ -42,6 +42,28 @@
     onScroll();
   }
 
+  // Interactive blind demo: drag the slider to raise/lower, pick a color
+  var blindEl = document.getElementById('blindEl');
+  var blindRange = document.getElementById('blindRange');
+  if (blindEl && blindRange) {
+    var setBlindHeight = function () {
+      blindEl.style.setProperty('--blind-h', blindRange.value + '%');
+    };
+    blindRange.addEventListener('input', setBlindHeight);
+    setBlindHeight();
+  }
+
+  var swatches = document.querySelectorAll('.blind-demo__swatches button');
+  if (swatches.length && blindEl) {
+    swatches.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        blindEl.style.setProperty('--slat-color', btn.dataset.color);
+        swatches.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+      });
+    });
+  }
+
   // Demo form: validate, then show the confirmation instead of posting
   var form = document.getElementById('quoteForm');
   var ok = document.getElementById('formOk');
