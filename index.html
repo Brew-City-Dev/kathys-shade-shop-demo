@@ -65,6 +65,7 @@
 
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#products">Products</a>
+      <a href="#customize">Customize</a>
       <a href="#services">Services</a>
       <a href="#repairs">Repairs</a>
       <a href="#brands">Brands</a>
@@ -110,6 +111,49 @@
         <li>Installed by our own crew</li>
         <li>Repairs on most brands</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ───────────── INTERACTIVE CUSTOMIZE DEMO ───────────── -->
+  <section class="section demo" id="customize">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">See it in action</p>
+        <h2>Raise it. Change it. Make it yours.</h2>
+        <p class="sec-head__sub">A small taste of what a product page could do for Kathy's &mdash; drag the shade up and down, then try it in a different color. The real site could do this for every product in the shop.</p>
+      </header>
+
+      <div class="blind-demo">
+        <div class="blind-demo__window">
+          <div class="blind-demo__sky"></div>
+          <div class="blind-demo__panes" aria-hidden="true"></div>
+          <div class="blind-demo__blind" id="blindEl">
+            <div class="blind-demo__headrail"></div>
+            <div class="blind-demo__slats"></div>
+            <div class="blind-demo__bottombar">
+              <span class="blind-demo__pull" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="blind-demo__controls">
+          <label class="blind-demo__range">
+            Raise / lower the shade
+            <input type="range" min="0" max="100" value="38" id="blindRange" aria-label="Raise or lower the shade">
+          </label>
+          <div>
+            <p class="blind-demo__label">Pick a color</p>
+            <div class="blind-demo__swatches" role="group" aria-label="Shade color">
+              <button type="button" class="is-active" data-color="#e9dcc7" style="--sw:#e9dcc7" aria-label="Birch"></button>
+              <button type="button" data-color="#8a5a31" style="--sw:#8a5a31" aria-label="Walnut"></button>
+              <button type="button" data-color="#4b5a52" style="--sw:#4b5a52" aria-label="Sage"></button>
+              <button type="button" data-color="#2c2c2c" style="--sw:#2c2c2c" aria-label="Graphite"></button>
+              <button type="button" data-color="#f4eee5" style="--sw:#f4eee5" aria-label="Linen"></button>
+            </div>
+          </div>
+          <p class="blind-demo__fine">Demo only &mdash; on the live site this would sit on each product page, loaded with your real colors and fabrics.</p>
+        </div>
+      </div>
     </div>
   </section>
 
