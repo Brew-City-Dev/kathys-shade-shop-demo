@@ -181,7 +181,13 @@ p{margin:0 0 1rem}
   display:flex;flex-direction:column;
   transition:height .45s cubic-bezier(.4,0,.2,1);
   box-shadow:0 14px 20px -12px rgba(0,0,0,.35);
+  cursor:grab;touch-action:none;
 }
+.blind-demo__blind:active,
+.blind-demo__blind.is-dragging{
+  cursor:grabbing;transition:none;
+}
+.blind-demo__blind:focus-visible{outline:2.5px solid var(--brass);outline-offset:3px}
 .blind-demo__headrail{
   height:14px;flex:0 0 auto;background:linear-gradient(180deg,#3a362f,#232019);
 }
@@ -208,8 +214,8 @@ p{margin:0 0 1rem}
 }
 
 .blind-demo__controls{display:grid;gap:24px}
-.blind-demo__range{display:grid;gap:10px;font-size:.88rem;font-weight:600;color:var(--ink-2)}
-.blind-demo__range input[type="range"]{width:100%;accent-color:var(--brass)}
+.blind-demo__hint{display:grid;gap:6px}
+.blind-demo__hint__sub{font-size:.86rem;color:var(--muted);margin:0}
 .blind-demo__label{font-size:.88rem;font-weight:600;color:var(--ink-2);margin:0 0 .6rem}
 .blind-demo__swatches{display:flex;gap:10px}
 .blind-demo__swatches button{

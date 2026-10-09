@@ -127,7 +127,7 @@
         <div class="blind-demo__window">
           <div class="blind-demo__sky"></div>
           <div class="blind-demo__panes" aria-hidden="true"></div>
-          <div class="blind-demo__blind" id="blindEl">
+          <div class="blind-demo__blind" id="blindEl" tabindex="0" role="slider" aria-label="Raise or lower the shade" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38" aria-orientation="vertical">
             <div class="blind-demo__headrail"></div>
             <div class="blind-demo__slats"></div>
             <div class="blind-demo__bottombar">
@@ -137,10 +137,10 @@
         </div>
 
         <div class="blind-demo__controls">
-          <label class="blind-demo__range">
-            Raise / lower the shade
-            <input type="range" min="0" max="100" value="38" id="blindRange" aria-label="Raise or lower the shade">
-          </label>
+          <div class="blind-demo__hint">
+            <p class="blind-demo__label">Raise / lower the shade</p>
+            <p class="blind-demo__hint__sub">Click and drag the shade right in the window above. Keyboard: focus it and use the arrow keys.</p>
+          </div>
           <div>
             <p class="blind-demo__label">Pick a color</p>
             <div class="blind-demo__swatches" role="group" aria-label="Shade color">

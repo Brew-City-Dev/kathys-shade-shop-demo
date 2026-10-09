@@ -42,15 +42,49 @@
     onScroll();
   }
 
-  // Interactive blind demo: drag the slider to raise/lower, pick a color
+  // Interactive blind demo: click and drag the shade itself to raise/lower, pick a color
   var blindEl = document.getElementById('blindEl');
-  var blindRange = document.getElementById('blindRange');
-  if (blindEl && blindRange) {
-    var setBlindHeight = function () {
-      blindEl.style.setProperty('--blind-h', blindRange.value + '%');
+  var blindWindow = document.querySelector('.blind-demo__window');
+  if (blindEl && blindWindow) {
+    var setBlindHeight = function (pct) {
+      pct = Math.max(0, Math.min(100, Math.round(pct)));
+      blindEl.style.setProperty('--blind-h', pct + '%');
+      blindEl.setAttribute('aria-valuenow', String(pct));
+      return pct;
     };
-    blindRange.addEventListener('input', setBlindHeight);
-    setBlindHeight();
+
+    var pctFromPointer = function (clientY) {
+      var rect = blindWindow.getBoundingClientRect();
+      return ((clientY - rect.top) / rect.height) * 100;
+    };
+
+    var onPointerMove = function (e) {
+      setBlindHeight(pctFromPointer(e.clientY));
+    };
+    var stopDrag = function () {
+      blindEl.classList.remove('is-dragging');
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', stopDrag);
+    };
+
+    blindEl.addEventListener('pointerdown', function (e) {
+      blindEl.classList.add('is-dragging');
+      blindEl.focus();
+      setBlindHeight(pctFromPointer(e.clientY));
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', stopDrag);
+      e.preventDefault();
+    });
+
+    // Arrow keys move the shade for anyone who can't drag
+    blindEl.addEventListener('keydown', function (e) {
+      var current = parseFloat(blindEl.getAttribute('aria-valuenow')) || 0;
+      var step = e.shiftKey ? 10 : 4;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { setBlindHeight(current + step); e.preventDefault(); }
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { setBlindHeight(current - step); e.preventDefault(); }
+      else if (e.key === 'Home') { setBlindHeight(0); e.preventDefault(); }
+      else if (e.key === 'End') { setBlindHeight(100); e.preventDefault(); }
+    });
   }
 
   var swatches = document.querySelectorAll('.blind-demo__swatches button');
